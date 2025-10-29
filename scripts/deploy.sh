@@ -5,7 +5,7 @@ set -e
 APP_NAME="$1"             # e.g. "myapp"
 APP_DIR="/home/lgibbs/github/$APP_NAME"
 SCREEN_NAME="$APP_NAME"
-NODE_CMD=${2:-node index.js test} # optional override of start command
+NODE_CMD="${2:-node index.js test}" # optional override of start command
 BRANCH="${3:-main}"              # default branch
 
 # === Safety checks ===
