@@ -1,0 +1,40 @@
+on:
+  workflow_call:
+    inputs:
+      app-name:
+        required: true
+        type: string
+      startup-cmd:
+        required: true
+        type: string
+      branch:
+        required: false
+        type: string
+        default: main
+    secrets:
+      TAILSCALE_OAUTH_CLIENT_ID:
+        required: true
+      TAILSCALE_OAUTH_SECRET:
+        required: true
+      HOST_USER:
+        required: true
+  
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v5
+      - name: Setup Tailscale
+        id: tailscale
+        uses: tailscale/github-action@v4
+        with:
+          oauth-client-id: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
+          oauth-secret: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
+          tags: tag:whatsapp-listener-ci
+          version: latest
+          ping: raspberrypi
+      - name: Deploy
+        id: deploy
+        run: |
+          ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USER }}@raspberrypi "bash -s --" < "scripts/deploy.sh" ${{app-name}} \"${{startup-cmd}}\"
