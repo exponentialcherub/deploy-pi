@@ -35,6 +35,6 @@ git reset --hard "origin/$BRANCH"
 
 # === Restart service ===
 echo "Starting new screen: $SCREEN_NAME"
-screen -dmS "$SCREEN_NAME" bash -c '$NODE_CMD'
+screen -dmS "$SCREEN_NAME" bash -c $NODE_CMD
 
 echo "? '$APP_NAME' deployed successfully."
