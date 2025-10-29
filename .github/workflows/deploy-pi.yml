@@ -37,4 +37,4 @@ jobs:
       - name: Deploy
         id: deploy
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USER }}@raspberrypi "bash -s --" < "scripts/deploy.sh" ${{app-name}} \"${{startup-cmd}}\"
+          ssh -o StrictHostKeyChecking=no ${{ secrets.HOST_USER }}@raspberrypi "bash -s --" < "scripts/deploy.sh" ${{ inputs.app-name }} \"${{ inputs.startup-cmd }}\" {{ inputs.branch }}
