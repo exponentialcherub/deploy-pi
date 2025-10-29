@@ -63,5 +63,3 @@ jobs:
 * The SSH user has permission to deploy and restart the app.
 
 ---
-
-Would you like me to add a short sample `deploy.sh` script (e.g. `git pull && restart service`)?
