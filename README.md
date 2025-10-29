@@ -11,15 +11,12 @@ Call this workflow from another workflow like this:
 ```yaml
 jobs:
   deploy:
-    uses: your-org/your-repo/.github/workflows/deploy.yml@main
+    uses: exponentialcherub/deploy-pi/.github/workflows/deploy-pi.yml@v1.0.2
     with:
-      app-name: "my-app"
-      startup-cmd: "docker compose up -d"
+      app-name: "whatsapp-listener"
+      startup-cmd: "node index.js prod"
       branch: "main"
-    secrets:
-      TAILSCALE_OAUTH_CLIENT_ID: ${{ secrets.TAILSCALE_OAUTH_CLIENT_ID }}
-      TAILSCALE_OAUTH_SECRET: ${{ secrets.TAILSCALE_OAUTH_SECRET }}
-      HOST_USER: ${{ secrets.HOST_USER }}
+    secrets: inherit
 ```
 
 ---
