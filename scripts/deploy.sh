@@ -33,10 +33,6 @@ echo "Pulling latest code..."
 git fetch origin "$BRANCH"
 git reset --hard "origin/$BRANCH"
 
-# === Install deps ===
-echo "Installing npm packages..."
-npm install --omit=dev
-
 # === Restart service ===
 echo "Starting new screen: $SCREEN_NAME"
 screen -dmS "$SCREEN_NAME" bash -c "$NODE_CMD"
