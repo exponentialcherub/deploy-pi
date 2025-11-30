@@ -15,8 +15,8 @@ if [ -z "$APP_NAME" ]; then
 fi
 
 if [ ! -d "$APP_DIR" ]; then
-  echo "? Directory $APP_DIR not found"
-  exit 1
+  echo "? Directory $APP_DIR not found, creating directory."
+  mkdir -p "$APP_DIR"
 fi
 
 echo "?? Deploying '$APP_NAME' from branch '$BRANCH'..."
