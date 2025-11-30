@@ -30,7 +30,7 @@ fi
 
 # === Update code ===
 echo "Pulling latest code..."
-git fetch origin "$BRANCH"
+git -C "$APP_DIR" fetch origin "$BRANCH" || git clone "https://github.com/exponentialcherub/$APP_NAME.git" "$APP_DIR"
 git reset --hard "origin/$BRANCH"
 
 # === Restart service ===
